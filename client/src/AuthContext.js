@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [loading, setLoading] = useState(true);
 
-  const API_URL = 'http://localhost:5000/api';
+  const API_URL = 'https://todo-app-wnhg.onrender.com/api';
 
   // Set up axios interceptor to include token in requests
   useEffect(() => {

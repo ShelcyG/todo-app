@@ -42,7 +42,7 @@ const TodoApp = () => {
   const navigate = useNavigate();
 
   // Base URL for your backend API
-  const API_URL = 'http://localhost:5000/api';
+  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
   // Fetch todos from backend
   const fetchTodos = async () => {
