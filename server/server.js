@@ -21,10 +21,35 @@ app.use(function(req, res, next) {
   }
 });
 
-// MongoDB connection (without deprecated options)
-mongoose.connect(process.env.MONGODB_URI)
-.then(() => console.log('MongoDB connected successfully'))
-.catch(err => console.log('MongoDB connection error:', err));
+// MongoDB connection with retry logic
+const connectDB = async () => {
+  try {
+    console.log('Attempting to connect to MongoDB...');
+    console.log('MONGODB_URI exists:', process.env.MONGODB_URI ? 'YES' : 'NO');
+    
+    const conn = await mongoose.connect(process.env.MONGODB_URI, {
+      serverSelectionTimeoutMS: 30000,
+      socketTimeoutMS: 75000,
+      family: 4
+    });
+    
+    console.log('MongoDB connected successfully');
+  } catch (error) {
+    console.error('MongoDB connection error:', error.message);
+    
+    try {
+      console.log('Retrying connection...');
+      await mongoose.connect(process.env.MONGODB_URI);
+      console.log('MongoDB connected on retry');
+    } catch (retryError) {
+      console.error('Retry failed:', retryError.message);
+      process.exit(1);
+    }
+  }
+};
+
+// Call the connection function
+connectDB();
 
 // User Schema - NEW
 const userSchema = new mongoose.Schema({
