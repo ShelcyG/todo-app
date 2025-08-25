@@ -3,7 +3,7 @@
 A full-stack web application for managing personal to-do tasks with secure user authentication.  
 Users can sign up, log in, and manage their own tasks (create, read, update, delete).  
 ## Live Demo
-[**View Live Application**](https://todo-app-git-main-shelcygs-projects.vercel.app?_vercel_share=qZTYd6Ca4lph3kYpJUCyhHxMN6kn0IVB)
+[**View Live Application**] (https://todo-app-git-main-shelcygs-projects.vercel.app?_vercel_share=qZTYd6Ca4lph3kYpJUCyhHxMN6kn0IVB)
 ## Features
 - **User Authentication** – Sign up and login with JWT-based sessions.
 - **Task Management** – Add, edit, delete, and mark tasks as complete.
